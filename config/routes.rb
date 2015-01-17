@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+  resources :profiles
+  
+  resources :users do
+    resources :profiles, controller: 'profiles'
+  end
   
   root              'static_pages#home'
   get 'about'   =>  'static_pages/about'
