@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116225231) do
+ActiveRecord::Schema.define(version: 20150117000211) do
+
+  create_table "profiles", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "statename"
+    t.string   "zipcode"
+    t.date     "birthdate"
+    t.string   "phonenum"
+    t.string   "prescription_id"
+    t.string   "prescription_num"
+    t.string   "prescription_exp"
+    t.boolean  "verified",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
