@@ -1,38 +1,15 @@
 class ProfilesController < ApplicationController
-
-  # GET /profiles
-  # GET /profiles.json
-  # def index
-    # @profiles = Profile.all
-  # end
-  
-  # def index
-    # if params[:ids]
-      # @profiles = Profile.where(:id => params[:ids].split(","))
-    # elsif params[:q]
-      # @profiles = Profile.ransack(params[:q]).result
-    # else
-      # @profiles = Profile.all
-    # end
-# 
-    # @profiles = @profiles.distinct.page(params[:page]).per(params[:per_page])
-    # #expires_in 15.minutes, :public => true
-    # headers['Surrogate-Control'] = "max-age=#{15.minutes}"
-  # end
   
   def index
-    @profiles = Profile.all
   end
 
   # GET /profiles/1
-  # GET /profiles/1.json
   def show
     @profile = Profile.find(params[:id])
   end
 
   # GET /profiles/new
   def new
-    @user = User.find(params[:user_id])
     @profile = Profile.new
   end
 
@@ -47,10 +24,10 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @profile }
+        format.html { redirect_to @user.profile, notice: 'Profile was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @user.profile }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', controller: 'user' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -81,14 +58,9 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id]) rescue nil
-      # @profile ||= Profile.find_by(slug: params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :firstname, :lastname, :birthdate, :phonenum, :prescription_num, :prescription_exp, :verified)
+      params.require(:profile).permit(:firstname, :lastname, :birthdate, :phonenum, :prescription_num, :prescription_exp, :verified)
     end
 end

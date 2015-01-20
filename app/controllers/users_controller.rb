@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   
+  def index
+    redirect_to "show"
+  end
+  
   def show
     @user = User.find(params[:id])
   end
   
   def new
     @user = User.new
-    @profile = Profile.new(:user_id => @user.id)
+    profile = @user.profiles.build
   end
   
   def create
     @user = User.new(user_params)
-    @profile = Profile.new(:user_id => @user.id)
+    @profile = current_user.profiles.build(params[:profile])
 
     respond_to do |format|
       if @profile.save

@@ -31,7 +31,10 @@ group :development do
   gem 'rspec-rails', '2.13.1'
 end
 
+# Devise Authentication and CanCan Authorization
 gem 'devise'
+
+gem 'cancan'
 
 gem 'activeadmin', github: 'activeadmin'
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  resources :profiles
+  resources :profiles, controller: 'profiles'
   
   resources :users do
     resources :profiles, controller: 'profiles'
