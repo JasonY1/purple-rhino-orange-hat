@@ -22,7 +22,11 @@
 					<%= link_to "Contact",  	contact_path %>
 				</li>
 				<li>
-					<%= link_to "Sign-in", new_user_session_path %>	
+					<% if user_signed_in? %>
+						<%= link_to "Logout", destroy_user_session_path %>	
+					<% else %>
+						<%= link_to "Login/Register", new_user_session_path %>
+				  <% end %>
 				</li>
 			</ul>
 
