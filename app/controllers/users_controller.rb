@@ -2,20 +2,21 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
+    redirect_to current_user
   end
   
   def show
+    @user = current_user
   end
   
   def new
     @user = User.new
-  end
-  
-  def edit
+    profile = @user.profiles.build
   end
   
   def create
     @user = User.new(user_params)
+    @profile = current_user.profiles.build(params[:profile])
 
     respond_to do |format|
       if @profile.save
@@ -28,15 +29,12 @@ class UsersController < ApplicationController
     end
   end
   
-  def update
-  end
-  
   def destroy
   end
   
   private
   
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(user)
     end
 end
