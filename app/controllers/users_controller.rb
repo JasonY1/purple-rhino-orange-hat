@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    redirect_to current_user
   end
   
   def show
@@ -11,12 +10,10 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    profile = @user.profiles.build
   end
   
   def create
-    @user = User.new(user_params)
-    @profile = current_user.profiles.build(params[:profile])
+    @user = User.create(user_params)
 
     respond_to do |format|
       if @profile.save

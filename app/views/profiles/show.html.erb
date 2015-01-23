@@ -1,3 +1,7 @@
-<h1>Logged-in as <%= @user %></h1>
-<%#= render "form" %>
+<h1>Logged-in as <%= current_user.email %></h1>
+<%= current_user.profile.firstname %>
+<%= current_user.profile.lastname %>
+<%= current_user.profile.prescription_num%>
+<br />
+
 <%= link_to "Create profile", new_user_profile_path(@profile) %>

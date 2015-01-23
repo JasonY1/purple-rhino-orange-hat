@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1
   def show
+    @user = current_user
     @profile = Profile.find(params[:id])
   end
 
@@ -21,11 +22,11 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @user = current_user
-    @profile = Profile.create(profile_params)
+    @profile = @user.create_profile(profile_params)
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to user_profiles_path(@profile), notice: 'Profile was successfully created.' }
         format.json { render action: 'index', status: :created, location: @user.profile }
       else
         format.html { render action: 'new', controller: 'user' }

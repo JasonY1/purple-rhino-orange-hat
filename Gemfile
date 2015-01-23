@@ -29,6 +29,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'rspec-rails', '2.13.1'
+  gem 'binding_of_caller'
 end
 
 # Devise Authentication and CanCan Authorization
