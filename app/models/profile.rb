@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user, inverse_of: :profile
+  belongs_to :user
   
   validates_presence_of :firstname, :lastname
 end

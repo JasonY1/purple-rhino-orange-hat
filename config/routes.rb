@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   
+  get 'products/all', to: 'store#all'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+  
+  namespace :products do  
+    resources :greens, path: '/grass'
+    resources :concentrates
+    resources :edibles
+  end
   
   resources :users do
     resources :profiles

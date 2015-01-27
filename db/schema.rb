@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120010407) do
+ActiveRecord::Schema.define(version: 20150127002722) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -45,6 +45,68 @@ ActiveRecord::Schema.define(version: 20150120010407) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+
+  create_table "concentrates", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "style"
+    t.string   "strain"
+    t.decimal  "thc"
+    t.string   "image_url"
+    t.string   "link"
+    t.integer  "inventory"
+    t.decimal  "ppgram",      precision: 8, scale: 2
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "concentrates", ["product_id"], name: "index_concentrates_on_product_id"
+
+  create_table "edibles", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.decimal  "thc"
+    t.string   "image_url"
+    t.string   "link"
+    t.integer  "inventory"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "edibles", ["product_id"], name: "index_edibles_on_product_id"
+
+  create_table "greens", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.string   "strain"
+    t.decimal  "thc"
+    t.string   "image_url"
+    t.string   "link"
+    t.integer  "inventory"
+    t.decimal  "ppgram",      precision: 8, scale: 2
+    t.decimal  "ppeighth",    precision: 8, scale: 2
+    t.decimal  "ppquad",      precision: 8, scale: 2
+    t.decimal  "pphalf",      precision: 8, scale: 2
+    t.decimal  "ppoz",        precision: 8, scale: 2
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+  end
+
+  add_index "greens", ["product_id"], name: "index_greens_on_product_id"
+
+  create_table "products", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", force: true do |t|
     t.string   "firstname"
