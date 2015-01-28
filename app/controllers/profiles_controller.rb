@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
         format.html { redirect_to user_profiles_path(@profile), notice: 'Profile was successfully created.' }
         format.json { render action: 'index', status: :created, location: @user.profile }
       else
-        format.html { render action: 'new', controller: 'user' }
+        format.html { render action: 'new', location: @user.profile }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -39,6 +39,8 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    @profile = Profile.find(params[:id])
+    
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }

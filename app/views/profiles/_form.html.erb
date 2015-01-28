@@ -1,5 +1,5 @@
 <%= form_for current_user do |f| %>
-  <%= fields_for :profile do |m| %>
+  <%= f.fields_for :profile do |m| %>
 	<% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
