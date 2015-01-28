@@ -6,19 +6,15 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   
-  namespace :products do  
-    resources :greens, path: '/grass'
-    resources :concentrates
-    resources :edibles
-  end
-  
+  resources :products
+    
   resources :users do
-    resources :profiles
+    resource :profile
   end
   
   root              'static_pages#home'
-  get 'about'   =>  'static_pages/about'
-  get 'contact' =>  'static_pages/contact'
+  get 'about'   =>  'static_pages#about'
+  get 'contact' =>  'static_pages#contact'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

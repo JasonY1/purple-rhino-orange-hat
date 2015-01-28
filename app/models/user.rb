@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :profile, dependent: :destroy, inverse_of: :user
+  has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, presence: true, uniqueness: true
-  before_create :build_profile 
+  after_create :build_profile 
 end

@@ -11,17 +11,18 @@
   <![endif]-->
 </head>
 <body>
-<%= render 'shared/navbar' %>
+	<%= render 'shared/navbar' %>
 
-<div class="container">
-	<% if notice %>
-	  <p class="alert alert-success"><%= notice %></p>
-	<% end %>
-	<% if alert %>
-	  <p class="alert alert-danger"><%= alert %></p>
-	<% end %>
-	<%= yield %>
-</div>
-
+	<div class="container">
+		<% if notice %>
+		  <p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+		  <p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+		<div class="main_style">
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>

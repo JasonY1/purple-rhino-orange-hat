@@ -1,28 +1,31 @@
 class ProfilesController < ApplicationController
   
   def index
+    
   end
 
   # GET /profiles/1
   def show
     @user = current_user
-    @profile = Profile.find(params[:id])
+    @profiles = @user.profile
   end
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    @user = current_user
+    @profile = @user.build_profile(profile_params)
   end
 
   # GET /profiles/1/edit
   def edit
+    @profile = Profile.find(params[:id])
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
     @user = current_user
-    @profile = @user.create_profile(profile_params)
+    @profile = @user.build_profile(profile_params)
 
     respond_to do |format|
       if @profile.save
