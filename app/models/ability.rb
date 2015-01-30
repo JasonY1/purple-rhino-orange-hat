@@ -1,21 +1,21 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  # def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
-      if AdminUser?
-        can :manage, :all
-      elsif current_user.profile.approved?
-        can :read, :all
-      elsif current_user?
-        can :read, :all
-        can [:crud], [User, Profile]
-      else
-        can [:crud], [User]
-      end
-    #
+      # if AdminUser?
+        # can :manage, :all
+      # elsif current_user.profile.approved?
+        # can :read, :all
+      # elsif current_user?
+        # can :read, :all
+        # can [:crud], [User, Profile]
+      # else
+        # can [:crud], [User]
+      # end
+    # #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -33,5 +33,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
+  # end
 end
