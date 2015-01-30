@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, presence: true, uniqueness: true
+  
   after_create :build_profile 
 end

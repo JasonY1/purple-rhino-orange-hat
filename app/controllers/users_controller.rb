@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def show
-    @user = current_user.id
-    @profile = Profile.new(user_id: @user)
+    @user = current_user
   end
   
   def new
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.create(user_params)
-    @profile = @user.build_profile
+    @profile = @user.build_profile(profile_params)
 
     respond_to do |format|
       if @profile.save
@@ -46,6 +45,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation,
+      profile_attributes: [:firstname, :lastname, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_id, :valid_id, :verified])
     end
 end

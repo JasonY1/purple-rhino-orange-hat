@@ -9,6 +9,11 @@ class Ability
         can :manage, :all
       elsif current_user.profile.approved?
         can :read, :all
+      elsif current_user?
+        can :read, :all
+        can [:crud], [User, Profile]
+      else
+        can [:crud], [User]
       end
     #
     # The first argument to `can` is the action you are giving the user 
