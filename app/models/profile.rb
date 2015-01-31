@@ -13,7 +13,7 @@ class Profile < ActiveRecord::Base
     preserve_files: true,
     processors: [:thumbnail, :compression]
 
-  validates_attachment :mugshot, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment :prescription_id, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   
   has_attached_file :valid_id,
     styles: { normal: "400x400#", bigger: "700x700#" },
@@ -22,5 +22,5 @@ class Profile < ActiveRecord::Base
     preserve_files: true,
     processors: [:thumbnail, :compression]
 
-  validates_attachment :coverpic, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment :valid_id, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 end

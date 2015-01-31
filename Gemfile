@@ -36,6 +36,7 @@ end
 gem 'devise'
 
 gem 'cancan'
+gem "paperclip", "~> 4.2"
 
 gem 'activeadmin', github: 'activeadmin'
 
