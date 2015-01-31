@@ -1,6 +1,8 @@
 <h1>Logged-in as <%= current_user.email %></h1>
+
+
 <div class= "btn-group">
-<%= link_to 'Create Profile', new_user_profile_path, html: { class: "btn" } %>
+<%= link_to 'Create Profile1', edit_user_profile_path(current_user), html: { class: "btn" } %>
 </div>
 <br />
 

@@ -2,7 +2,7 @@
 <h1>Logged-in as <%= current_user.email %>(user)</h1>
 <p>User Show page should show red icon if profile not created, orange if profile is created, green if profile is approved</p>
 
-<%#= link_to "My Profile", user_profile_path(@user) %><br/>
+<%= link_to "My Profile", user_profile_path(@user) %><br/>
 <%#= link_to "My Orders", user_orders_path(@user) %>
 <%#= link_to "Change your password", edit_user_registration_path %> <br/>
 

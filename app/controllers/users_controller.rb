@@ -5,26 +5,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
   
-  def new
-    @user = User.new
-    @user.build_profile
-  end
-  
-  def create
-    @user = User.create(user_params)
-    @profile = @user.build_profile(profile_params)
-
-    respond_to do |format|
-      if @profile.save
-        format.html { redirect_to @user, notice: 'User Account successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
   def update
     @user = current_user
     
@@ -37,9 +17,6 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-  end
-  
-  def destroy
   end
   
   private

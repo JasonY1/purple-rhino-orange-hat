@@ -14,5 +14,10 @@ ActiveAdmin.register Product do
   #   permitted
   # end
 
-
+    has_attached_file :image_url
+    styles: { normal: "1000x1000#", thumb: "300x300#" },
+    url: '/photos/products/image_url/:id/:style_:basename.:extension',
+    default_style: :normal,
+    preserve_files: true,
+    processors: [:thumbnail, :compression]
 end

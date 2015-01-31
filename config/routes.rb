@@ -9,12 +9,11 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   
-  resources :products
-    
   resources :users do
     resource :profile
   end
   
+  resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
