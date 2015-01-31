@@ -7,4 +7,6 @@ class Product < ActiveRecord::Base
     default_style: :normal,
     preserve_files: true,
     processors: [:thumbnail, :compression]
+    
+  validates_attachment :image_url, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 end
