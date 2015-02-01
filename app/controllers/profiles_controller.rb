@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     @user = current_user
-    @profile = current_user.build_profile
+    @profile = current_user.profile
   end
 
   # POST /profiles

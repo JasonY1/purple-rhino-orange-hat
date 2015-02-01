@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128064312) do
+ActiveRecord::Schema.define(version: 20150201043516) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -87,11 +87,19 @@ ActiveRecord::Schema.define(version: 20150128064312) do
     t.string   "prescription_id"
     t.string   "prescription_num"
     t.string   "prescription_exp"
-    t.boolean  "verified",         default: false
+    t.boolean  "verified",                     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "valid_id"
     t.integer  "user_id"
+    t.string   "valid_id_file_name"
+    t.string   "valid_id_content_type"
+    t.integer  "valid_id_file_size"
+    t.datetime "valid_id_updated_at"
+    t.string   "prescription_id_file_name"
+    t.string   "prescription_id_content_type"
+    t.integer  "prescription_id_file_size"
+    t.datetime "prescription_id_updated_at"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
