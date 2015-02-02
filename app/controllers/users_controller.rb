@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = current_user
     
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params) || @user.build_profile
         format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   
     def user_params
       params.require(:user).permit(:email, 
-          profile_attributes: [:firstname, :lastname, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_id, :valid_id, :verified])
+          profile_attributes: [:firstname, :lastname, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_card, :idcard, :verified])
     end
 end

@@ -13,14 +13,12 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    @user = current_user
     @profile = current_user.build_profile
   end
 
   # GET /profiles/1/edit
   def edit
-    @user = current_user
-    @profile = current_user.profile
+    @profile = current_user.build_profile
   end
 
   # POST /profiles
@@ -70,6 +68,9 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:firstname, :lastname, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_id, :valid_id, :verified)
+      params.require(:profile).permit(:firstname, :lastname, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_card, :idcard, :verified)
     end
+    
+    ###### http://stackoverflow.com/questions/17737709/paperclip-in-rails-4-strong-parameters-forbidden-attributes-error
+    
 end

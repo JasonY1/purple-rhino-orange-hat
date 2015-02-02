@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201043516) do
+ActiveRecord::Schema.define(version: 20150202000421) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -84,25 +84,23 @@ ActiveRecord::Schema.define(version: 20150201043516) do
     t.string   "zipcode"
     t.date     "birthdate"
     t.string   "phonenum"
-    t.string   "prescription_id"
     t.string   "prescription_num"
     t.string   "prescription_exp"
-    t.boolean  "verified",                     default: false
+    t.boolean  "verified",                       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "valid_id"
     t.integer  "user_id"
-    t.string   "valid_id_file_name"
-    t.string   "valid_id_content_type"
-    t.integer  "valid_id_file_size"
-    t.datetime "valid_id_updated_at"
-    t.string   "prescription_id_file_name"
-    t.string   "prescription_id_content_type"
-    t.integer  "prescription_id_file_size"
-    t.datetime "prescription_id_updated_at"
+    t.string   "idcard"
+    t.string   "prescription_card"
+    t.string   "idcard_file_name"
+    t.string   "idcard_content_type"
+    t.integer  "idcard_file_size"
+    t.datetime "idcard_updated_at"
+    t.string   "prescription_card_file_name"
+    t.string   "prescription_card_content_type"
+    t.integer  "prescription_card_file_size"
+    t.datetime "prescription_card_updated_at"
   end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
