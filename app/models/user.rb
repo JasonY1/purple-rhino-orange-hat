@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   accepts_nested_attributes_for :profile
   
-  after_create :build_profile
+  before_create :build_profile
   
 end

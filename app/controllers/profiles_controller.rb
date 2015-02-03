@@ -6,21 +6,17 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1
   def show
-    @profile = current_user.profile
+    @user = current_user
   end
 
   # GET /profiles/new
   def new
-    @user = current_user
-    @user.build_profile
-    @user.profile.user_id = @user.id
+    @profile = current_user.build_profile
+    
   end
 
   # GET /profiles/1/edit
   def edit
-    @user = current_user.id
-    Profile.find_by(user_id: @user)
-    
   end
 
   # POST /profiles
@@ -61,7 +57,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url }
+      format.html { redirect_to @profile }
       format.json { head :no_content }
     end
   end

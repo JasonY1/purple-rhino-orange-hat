@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user.profile, notice: 'User was successfully updated.' }
+        format.html { redirect_to user_profile_path(current_user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to new_user_profile_path(@user), notice: 'UserProfile not updated' }

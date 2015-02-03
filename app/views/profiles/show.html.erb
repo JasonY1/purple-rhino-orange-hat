@@ -1,6 +1,15 @@
 <h1>Logged-in as <%= current_user.email %></h1>
 
+<div>
+	Verified: <%= current_user.profile.verified %><br />
+	Name: <%= current_user.profile.firstname %> <%= current_user.profile.lastname %><br />
+	Prescription ID: <%= image_tag current_user.profile.prescription_card.url %><br />
+	Valid ID Card: <%= image_tag current_user.profile.idcard.url %> <br />
+</div>
 
-<%= link_to 'Create Profile1', new_user_profile_path(current_user), class: "btn btn-default" %>
-<%= link_to 'Edit Profile', edit_user_profile_path(current_user), class: "btn btn-default" %>
+<% if current_user.profile.nil? %>
+	<%= link_to 'Create Profile1', new_user_profile_path(current_user), class: "btn btn-default" %>	
+<% else %>
+	<%= link_to 'Edit Profile', edit_user_profile_path(current_user), class: "btn btn-default" %>
+<% end %>
 
