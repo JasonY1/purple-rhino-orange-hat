@@ -7,10 +7,9 @@ class Product < ActiveRecord::Base
     styles: { normal: "1000x1000#", thumb: "300x300#" },
     url: '/photos/products/image_url/:id/:style_:basename.:extension',
     default_style: :normal,
-    preserve_files: true,
-    processors: [:thumbnail, :compression]
+    preserve_files: true
     
-  validates_attachment :image_url, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment_content_type :image_url, content_type: /^image\/(jpeg|png|gif|tiff|jpg)$/
   
   def self.latest
     Product.order(:update_at).last
