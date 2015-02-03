@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :title, :description, :type, :strain, :thc, :image_url, :link, :inventory, :ppunit, :ppgram, :ppeighth, :ppquad, :pphalf, :ppoz, :slug, :show
+
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -13,5 +13,6 @@ ActiveAdmin.register Product do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+
 
 end

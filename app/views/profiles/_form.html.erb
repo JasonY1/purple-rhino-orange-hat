@@ -72,11 +72,23 @@
   	<%= m.label "Prescription", class: "col-sm-2 col-xs-12" %>
   	<%= m.file_field :prescription_card, class: "col-sm-10 col-xs-12" %>
 	</div>
+	
+	<%if m.prescription_card.present? %>
+		<div class="form-group">
+			<%= image_tag m.prescription_card.url, class: "col-sm-offset-2 col-xs-12"%>
+		</div>
+	<% end %>
 	  
 	<div class="form-group">
 		<%= m.label "Valid Id", class: "col-sm-2 col-xs-12" %>
   	<%= m.file_field :idcard, class: "col-sm-10 col-xs-12" %>
   </div>
+  
+	<%if m.idcard.present? %>
+		<div class="form-group">
+			<%= image_tag m.idcard.url, class: "col-sm-offset-2 col-xs-12"%>
+		</div>
+	<% end %>
   
   <div class="col-xs-12 update-btn">
     <%= m.submit 'Create profile', :class => 'btn btn-lg btn-default pull-right' %>
