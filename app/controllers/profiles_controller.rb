@@ -13,7 +13,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @user = current_user
-    @profile = @user.build_profile
+    @user.build_profile
+    @user.profile.user_id = @user.id
   end
 
   # GET /profiles/1/edit
