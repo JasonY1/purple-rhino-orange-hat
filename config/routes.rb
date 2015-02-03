@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'store/index'
+
   resources :line_items
 
   resources :carts
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   root                    'static_pages#home'
   get 'about',        to: 'static_pages#about'
   get 'contact',      to: 'static_pages#contact'
-  get 'products/all', to: 'store#all'
+  get 'store',        to: 'store#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

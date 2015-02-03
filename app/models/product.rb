@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :image_url, content_type: /^image\/(jpeg|png|gif|tiff|jpg)$/
   
   def self.latest
-    Product.order(:update_at).last
+    Product.order(:updated_at).last
   end
   
   private
