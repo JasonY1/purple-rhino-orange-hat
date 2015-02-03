@@ -8,15 +8,14 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.build_profile
-    @user.profile.user_id = @user.id
     
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user.profile, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to new_user_profile_path(@user), notice: 'UserProfile not updated' }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { render json: @user.profile.errors, status: :unprocessable_entity }
       end
     end
   end

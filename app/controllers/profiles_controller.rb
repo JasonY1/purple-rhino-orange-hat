@@ -2,12 +2,11 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    
   end
 
   # GET /profiles/1
   def show
-    @profiles = current_user.profile
+    @profile = current_user.profile
   end
 
   # GET /profiles/new

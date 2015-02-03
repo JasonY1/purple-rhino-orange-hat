@@ -1,6 +1,6 @@
 <%= form_for current_user, html: { class: "form-horizontal col-sm-12" } do |f| %>
   <%= f.fields_for :profile do |m| %>
-	<% if @profile.errors.any? %>
+	<% if current_user.profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
       <ul>
