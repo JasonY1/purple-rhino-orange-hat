@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :line_items
+
+  resources :carts
+
   root                    'static_pages#home'
   get 'about',        to: 'static_pages#about'
   get 'contact',      to: 'static_pages#contact'

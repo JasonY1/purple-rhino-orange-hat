@@ -1,17 +1,21 @@
 <% if notice %>
-	<p ud="notice"><%= notice %></p>
+	<p id="notice"><%= notice %></p>
 <% end %>
 
+<h1>Your Catalog</h1>
 
-<h1>Store#index</h1>
-<p>Find me in app/views/store/index.html.erb</p>
-<% @product.each do |t| %>
-	<% cache ['entry', product] do %>
-	<div class="entry">
-		<%= image_tag(t.image_url)%>
-		<h3><%= product.name %></h3>
-		<span class="price">$<%= t.price %></span>
-	</div>
-	<% end %>
-	
+<% cache ['store', Product.latest] do %>
+	<% @products.each do |product| %>
+		<% cache ['entry', product] do %>
+			<div class="entry">
+				<%= image_tag(product.image_url) %>
+				<h3><%= product.title %></h3>
+				<%= sanitize(product.description) %>
+				<div class="price_line">
+					<span class="price"><%= number_to_currency(product.price) %></span>
+					<%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+				</div>
+			</div>
+		<% end %> 
+	<% end %> 
 <% end %>
