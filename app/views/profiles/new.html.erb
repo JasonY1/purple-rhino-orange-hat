@@ -1,3 +1,84 @@
-<h1>New profile</h1>
+<h1>Create Profile for <%= current_user.email %></h1>
+<br/>
 
-<%= render 'form' %>
+<!-- Start form partial -->
+
+<%= form_for current_user, html: { class: "form-horizontal col-sm-12" } do |f| %>
+  <%= f.fields_for :profile do |m| %>
+	
+  
+  <div class="form-group">
+    <%= m.label "First Name", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :firstname, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Last Name", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :lastname, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Phone #", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :phonenum, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Address 1", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :address1, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Address 2" , class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :address2, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "City", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :city, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "State", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :statename, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Zip", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :zipcode, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Birthdate", class: "col-sm-2" %>
+    <%= m.date_select(:birthdate, :prompt => {
+        :day => 'Select day', :month => 'Select month', :year => 'Select year'},
+        :order => [:month, :day, :year],
+        :start_year => (Date.today.year - 17),
+        :end_year => (Date.today.year - 100)
+    ) %>
+  </div>
+  
+  <div class="form-group">
+    <%= m.label "Prescription", class: "col-sm-2 col-xs-12" %>
+    <%= m.text_field :prescription_num, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="form-group">
+  	<%= m.label "Prescription", class: "col-sm-2 col-xs-12" %>
+  	<%= m.file_field :prescription_card, class: "col-sm-10 col-xs-12" %>
+	</div>
+	  
+	<div class="form-group">
+		<%= m.label "Valid Id", class: "col-sm-2 col-xs-12" %>
+  	<%= m.file_field :idcard, class: "col-sm-10 col-xs-12" %>
+  </div>
+  
+  <div class="col-xs-12 update-btn">
+    <%= m.submit 'Create profile', :class => 'btn btn-lg btn-default pull-right' %>
+  </div>
+
+<% end %>
+<% end %>
+
+
+<%= link_to 'Back', user_profile_path %>
+<%#= render 'form' %>

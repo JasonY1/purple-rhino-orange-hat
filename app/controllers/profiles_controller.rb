@@ -12,26 +12,29 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   def new
-    @profile = current_user.build_profile
+    @user = current_user
+    @profile = @user.build_profile
   end
 
   # GET /profiles/1/edit
   def edit
-    @profile = current_user.profile
+    @user = current_user.id
+    Profile.find_by(user_id: @user)
+    
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
-    @user = current_user
     @profile = current_user.build_profile(profile_params)
+    raise
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to user_profiles_path(@profile), notice: 'Profile was successfully created.' }
-        format.json { render action: 'index', status: :created, location: @user.profile }
+        format.html { redirect_to user_profile_path, notice: 'Profile was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @profile }
       else
-        format.html { render action: 'new', location: @user.profile }
+        format.html { render action: 'new', location: @profile }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
@@ -40,14 +43,13 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
-    user = current_user
-    @profile = user.profile
-    
+    raise
     respond_to do |format|
-      if @profile.update_attributes(profile_params)
+      if current_user.create_profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
+        raise
         format.html { render action: 'edit' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
@@ -72,5 +74,4 @@ class ProfilesController < ApplicationController
     end
     
     ###### http://stackoverflow.com/questions/17737709/paperclip-in-rails-4-strong-parameters-forbidden-attributes-error
-    
 end

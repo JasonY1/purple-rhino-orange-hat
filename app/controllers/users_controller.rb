@@ -7,14 +7,16 @@ class UsersController < ApplicationController
   
   def update
     @user = current_user
+    @profile = @user.create_profile
     
     respond_to do |format|
-      if @user.update(user_params) || @user.build_profile
-        format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
+      if @profile.save
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
+        raise
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_user_profile_path(@user), notice: 'Profile not created' }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -22,7 +24,8 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:email, 
+      params.require(:user).permit(:email,
           profile_attributes: [:firstname, :lastname, :birthdate, :address1, :address2, :city, :statename, :zipcode, :phonenum, :prescription_num, :prescription_exp, :prescription_card, :idcard, :verified])
     end
+    
 end
