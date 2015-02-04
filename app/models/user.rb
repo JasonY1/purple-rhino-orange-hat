@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_one :profile, dependent: :destroy
+  has_one :profile, dependent: :destroy, inverse_of: :user
+  has_many :orders
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
