@@ -9,6 +9,7 @@ class OrderNotifier < ActionMailer::Base
   def received(order)
     @order = order
     
+    
     #mail to: order.email, subject: "Doober Store Order Confirmation"
   end
 
