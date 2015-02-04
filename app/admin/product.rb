@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-
+  permit_params :title, :description, :strain, :thc, :link, :inventory, :ppunit, :ppgram, :ppeighth, :ppquad, :pphalf, :ppoz, :slug, :show, :image_url
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

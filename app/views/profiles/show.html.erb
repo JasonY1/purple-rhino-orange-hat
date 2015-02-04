@@ -3,8 +3,16 @@
 <div>
 	Verified: <%= current_user.profile.verified %><br />
 	Name: <%= current_user.profile.firstname %> <%= current_user.profile.lastname %><br />
-	Prescription ID: <%= image_tag current_user.profile.prescription_card.url %><br />
-	Valid ID Card: <%= image_tag current_user.profile.idcard.url %> <br />
+	Prescription ID: <% if current_user.profile.prescription_card.present?%>
+										<%= image_tag current_user.profile.prescription_card.url %><br />
+									<% else %>
+										None. Please update your profile<br/>
+									<% end %>
+	Valid ID Card: 	<% if current_user.profile.idcard.present? %>
+										<%= image_tag current_user.profile.idcard.url %> <br />
+									<% else %>
+										None. Please update your profile<br/>
+									<% end %>
 </div>
 
 <% if current_user.profile.nil? %>
